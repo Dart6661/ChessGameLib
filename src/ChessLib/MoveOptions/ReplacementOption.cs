@@ -1,4 +1,4 @@
-namespace Chess.Core;
+namespace ChessLib.MoveOptions;
 
 public class ReplacementOption(Type selectedFigure) : MoveOption
 {

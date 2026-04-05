@@ -1,4 +1,7 @@
-namespace Chess.Core;
+using ChessLib.Entities;
+using ChessLib.MoveActions;
+using ChessLib.Validation;
+namespace ChessLib.Figures;
 
 public class Knight : Figure
 {

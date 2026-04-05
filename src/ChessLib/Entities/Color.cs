@@ -1,4 +1,4 @@
-namespace Chess.Core;
+namespace ChessLib.Entities;
 
 public enum Color
 {

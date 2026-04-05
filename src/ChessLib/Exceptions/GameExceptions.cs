@@ -1,4 +1,4 @@
-namespace Chess.Core;
+namespace ChessLib.Exceptions;
 
 public class CheckMateException(string message) : Exception(message);
 

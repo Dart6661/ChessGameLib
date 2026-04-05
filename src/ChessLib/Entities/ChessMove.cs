@@ -1,4 +1,6 @@
-namespace Chess.Core;
+using ChessLib.MoveActions;
+
+namespace ChessLib.Entities;
 
 public class ChessMove
 {

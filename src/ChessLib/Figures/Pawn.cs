@@ -1,4 +1,9 @@
-namespace Chess.Core;
+using ChessLib.Entities;
+using ChessLib.MoveActions;
+using ChessLib.Validation;
+using ChessLib.Utils;
+
+namespace ChessLib.Figures;
 
 public class Pawn : Figure
 {

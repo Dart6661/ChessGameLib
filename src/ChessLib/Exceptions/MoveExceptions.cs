@@ -1,4 +1,4 @@
-namespace Chess.Core;
+namespace ChessLib.Exceptions;
 
 public class MovementException(string message) : Exception(message);
 

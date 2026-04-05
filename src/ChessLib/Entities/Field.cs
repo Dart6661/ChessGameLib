@@ -1,6 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using ChessLib.Exceptions;
+using ChessLib.Figures;
+using ChessLib.MoveActions;
+using ChessLib.Validation;
 
-namespace Chess.Core;
+namespace ChessLib.Entities;
 
 public class Field
 {

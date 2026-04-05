@@ -1,4 +1,9 @@
-﻿namespace Chess.Core;
+﻿using ChessLib.Entities;
+using ChessLib.Exceptions;
+using ChessLib.Figures;
+using ChessLib.Utils;
+
+namespace ChessLib.Validation;
 
 public static class MoveValidator
 {

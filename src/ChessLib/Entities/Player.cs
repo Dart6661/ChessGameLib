@@ -1,4 +1,6 @@
-﻿namespace Chess.Core;
+﻿using ChessLib.Figures;
+
+namespace ChessLib.Entities;
 
 public class Player(Color playerColor)
 {

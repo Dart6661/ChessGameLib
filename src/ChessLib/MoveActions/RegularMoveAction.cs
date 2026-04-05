@@ -1,4 +1,8 @@
-namespace Chess.Core;
+using ChessLib.Entities;
+using ChessLib.Figures;
+using ChessLib.MoveOptions;
+
+namespace ChessLib.MoveActions;
 
 internal class RegularMoveAction : MoveAction
 {

@@ -1,20 +1,23 @@
-﻿namespace Chess.Core;
+﻿using ChessLib.Entities;
+using ChessLib.Exceptions;
+using ChessLib.Figures;
+using ChessLib.MoveActions;
+using ChessLib.MoveOptions;
+using ChessLib.Validation;
+
+namespace ChessLib.GameLogic;
 
 public class GameHandler
 {
     public readonly Player whitePlayer;
     public readonly Player blackPlayer;
     public readonly Field field;
-    public DateTime StartTime { get; private set; }
-    public DateTime? EndTime { get; private set; }
 
     public GameHandler()
     {
         whitePlayer = new(Color.White);
         blackPlayer = new(Color.Black);
         field = new(whitePlayer, blackPlayer);
-        StartTime = DateTime.Now;
-        EndTime = null;
     }
 
     public void MakeMove(int a, int b, int x, int y, params MoveOption[] moveOptions)
@@ -29,8 +32,8 @@ public class GameHandler
             movingPlayer.AmountMovesOfPlayer++;
             MoveValidator.IsEndOfGame(defendingPlayer, field);
         }
-        catch (CheckMateException) { EndTime = DateTime.Now; throw; }
-        catch (StaleMateException) { EndTime = DateTime.Now; throw; }
+        catch (CheckMateException) { throw; }
+        catch (StaleMateException) { throw; }
     }
 
     public Player GetMovingPlayer() => (whitePlayer.AmountMovesOfPlayer == blackPlayer.AmountMovesOfPlayer) ? whitePlayer : blackPlayer;

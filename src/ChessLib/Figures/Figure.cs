@@ -1,4 +1,7 @@
-namespace Chess.Core;
+using ChessLib.Entities;
+using ChessLib.MoveActions;
+
+namespace ChessLib.Figures;
 
 public abstract class Figure(int a, int b, Player owner)
 {

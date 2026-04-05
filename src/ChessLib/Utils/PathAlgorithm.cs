@@ -1,4 +1,7 @@
-namespace Chess.Core;
+using ChessLib.Exceptions;
+using ChessLib.Validation;
+
+namespace ChessLib.Utils;
 
 public static class PathAlgorithm
 {
