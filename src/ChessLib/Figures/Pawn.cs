@@ -28,7 +28,7 @@ public class Pawn : Figure
 
     internal bool CheckMoveThroughCage(int x, int y)
     {
-        bool moveThroughCageDirection = (Color == Color.White && y - B == 2 || Color == Color.Black && B - y == 2);
+        bool moveThroughCageDirection = Color == Color.White && y - B == 2 || Color == Color.Black && B - y == 2;
         bool moveThroughCage = moveThroughCageDirection && Math.Abs(A - x) == 0;
         return moveThroughCage;
     }

@@ -1,5 +1,4 @@
 ﻿using ChessLib.Entities;
-using ChessLib.Exceptions;
 using ChessLib.Figures;
 using ChessLib.MoveActions;
 using ChessLib.MoveOptions;
@@ -9,40 +8,37 @@ namespace ChessLib.GameLogic;
 
 public class GameHandler
 {
-    public readonly Player whitePlayer;
-    public readonly Player blackPlayer;
-    public readonly Field field;
+    public Player WhitePlayer { get; private set; }
+    public Player BlackPlayer { get; private set; }
+    public Field Field { get; private set; }
 
     public GameHandler()
     {
-        whitePlayer = new(Color.White);
-        blackPlayer = new(Color.Black);
-        field = new(whitePlayer, blackPlayer);
+        WhitePlayer = new(Color.White);
+        BlackPlayer = new(Color.Black);
+        Field = new(WhitePlayer, BlackPlayer);
     }
 
-    public void MakeMove(int a, int b, int x, int y, params MoveOption[] moveOptions)
+    public MoveResult MakeMove(int a, int b, int x, int y, params MoveOption[] moveOptions)
     {
-        try
-        {
-            Player movingPlayer = GetMovingPlayer();
-            Player defendingPlayer = GetDefendingPlayer();
-            MoveValidator.IsValidMove(a, b, x, y, movingPlayer.Color, field);
-            Figure f = field.GetCell(a, b)!;
-            Move(f, x, y, [..moveOptions]);
-            movingPlayer.AmountMovesOfPlayer++;
-            MoveValidator.IsEndOfGame(defendingPlayer, field);
-        }
-        catch (CheckMateException) { throw; }
-        catch (StaleMateException) { throw; }
+        Player movingPlayer = GetMovingPlayer();
+        Player defendingPlayer = GetDefendingPlayer();
+        if (!MoveValidator.IsValidMove(a, b, x, y, movingPlayer.Color, Field)) 
+            return new MoveResult(false);
+        Figure f = Field.GetCell(a, b)!;
+        Move(f, x, y, [..moveOptions]);
+        movingPlayer.AmountMovesOfPlayer++;
+        TerminalPositionType? position = MoveValidator.IsEndOfGame(defendingPlayer, Field);
+        return new MoveResult(true, position);
     }
 
-    public Player GetMovingPlayer() => (whitePlayer.AmountMovesOfPlayer == blackPlayer.AmountMovesOfPlayer) ? whitePlayer : blackPlayer;
+    public Player GetMovingPlayer() => (WhitePlayer.AmountMovesOfPlayer == BlackPlayer.AmountMovesOfPlayer) ? WhitePlayer : BlackPlayer;
 
-    public Player GetDefendingPlayer() => (whitePlayer.AmountMovesOfPlayer > blackPlayer.AmountMovesOfPlayer) ? whitePlayer : blackPlayer;
+    public Player GetDefendingPlayer() => (WhitePlayer.AmountMovesOfPlayer > BlackPlayer.AmountMovesOfPlayer) ? WhitePlayer : BlackPlayer;
 
     private void Move(Figure figure, int x, int y, params MoveOption[] moveOptions)
     {
-        MoveAction? moveAction = figure.GetMoveAction(x, y, field);
+        MoveAction? moveAction = figure.GetMoveAction(x, y, Field);
         moveAction?.ExecuteMove(false, [..moveOptions]);
     }
 }
