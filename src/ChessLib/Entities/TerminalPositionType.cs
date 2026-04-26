@@ -2,6 +2,6 @@ namespace ChessLib.Entities;
 
 public enum TerminalPositionType
 {
-    CheckMate,
-    StaleMate
+    CheckMate = 1,
+    StaleMate = 2
 }

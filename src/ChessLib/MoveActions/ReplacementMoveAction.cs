@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ChessLib.Entities;
 using ChessLib.Exceptions;
 using ChessLib.Figures;
@@ -24,7 +25,16 @@ internal class ReplacementMoveAction : MoveAction
         if (!isReplay)
         {
             ReplacementOption? replacementOption = moveOptions?.OfType<ReplacementOption>()?.FirstOrDefault() ?? throw new OptionException("replacement option not provided");
-            Type newFigureType = replacementOption.SelectedFigure;
+            Type newFigureType = replacementOption.SelectedFigure switch
+            {
+                FigureType.King => typeof(King),
+                FigureType.Queen => typeof(Queen),
+                FigureType.Rook => typeof(Rook),
+                FigureType.Bishop => typeof(Bishop),
+                FigureType.Knight => typeof(Knight),
+                FigureType.Pawn => typeof(Pawn),
+                _ => throw new ArgumentException("invalid figure type")
+            };
             if (!Figure.GetTypeOfReplacementFigures().Contains(newFigureType)) throw new ReplacementException("the choice is incorrect");
             newFigure = Activator.CreateInstance(newFigureType, x, y, figure.Owner) as Figure ?? throw new ReplacementException("failed replacement");
         }

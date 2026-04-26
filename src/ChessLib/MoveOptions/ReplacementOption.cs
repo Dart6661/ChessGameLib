@@ -1,6 +1,8 @@
+using ChessLib.Entities;
+
 namespace ChessLib.MoveOptions;
 
-public class ReplacementOption(Type selectedFigure) : MoveOption
+public class ReplacementOption(FigureType selectedFigure) : MoveOption
 {
-    public Type SelectedFigure { get; init; } = selectedFigure;
+    public FigureType SelectedFigure { get; init; } = selectedFigure;
 }
