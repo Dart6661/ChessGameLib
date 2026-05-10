@@ -21,6 +21,7 @@ internal class TakeOnPassageMoveAction : MoveAction
 
     internal override void ExecuteMove(bool isReplay = false, params MoveOption[] moveOptions)
     {
+        options = moveOptions;
         takenPawn.RemoveFromPlayer();
         field.ChangeCell(takenX, bothY, null);
         field.Reposition(takerX, bothY, x, y, isReplay);

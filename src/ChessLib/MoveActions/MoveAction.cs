@@ -10,6 +10,9 @@ internal abstract class MoveAction(Figure figure, int x, int y, Field field)
     protected Figure figure = figure;
     protected int x = x;
     protected int y = y;
+    protected MoveOption[] options = [];
+
+    internal MoveOption[] GetOptions() => options;
 
     internal abstract void ExecuteMove(bool isReplay = false, params MoveOption[] moveOptions);
 

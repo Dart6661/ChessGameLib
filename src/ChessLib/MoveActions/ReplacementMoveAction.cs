@@ -22,6 +22,7 @@ internal class ReplacementMoveAction : MoveAction
 
     internal override void ExecuteMove(bool isReplay = false, params MoveOption[] moveOptions)
     {
+        options = moveOptions;
         if (!isReplay)
         {
             ReplacementOption? replacementOption = moveOptions?.OfType<ReplacementOption>()?.FirstOrDefault() ?? throw new OptionException("replacement option not provided");

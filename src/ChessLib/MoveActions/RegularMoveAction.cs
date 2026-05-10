@@ -19,6 +19,7 @@ internal class RegularMoveAction : MoveAction
 
     internal override void ExecuteMove(bool isReplay = false, params MoveOption[] moveOptions)
     {
+        options = moveOptions;
         takenFigure?.RemoveFromPlayer();
         field.Reposition(takerX, takerY, x, y, isReplay);
         if (!isReplay)

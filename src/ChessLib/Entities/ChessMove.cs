@@ -1,4 +1,5 @@
 using ChessLib.MoveActions;
+using ChessLib.MoveOptions;
 
 namespace ChessLib.Entities;
 
@@ -14,6 +15,10 @@ public class ChessMove
     public IReadOnlyList<(int, int, int, int)> GetWhiteMoves() => whiteMoves.AsReadOnly();
 
     public IReadOnlyList<(int, int, int, int)> GetBlackMoves() => blackMoves.AsReadOnly();
+
+    public MoveOption[] GetWhiteMoveOptions() => whiteMoveAction != null ? whiteMoveAction.GetOptions() : [];
+
+    public MoveOption[] GetBlackMoveOptions() => blackMoveAction != null ? blackMoveAction.GetOptions() : [];
 
     internal void SetMove(List<(int, int, int, int)> moves, MoveAction moveAction, Color color)
     {
