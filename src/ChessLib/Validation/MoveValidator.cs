@@ -111,8 +111,8 @@ public static class MoveValidator
         if (f != null && f.Title == FigureType.Pawn && f.AmountMovesOfFigure == 1)
         {
             ChessMove lastMove = field.moves[field.AmountMovesOnField];
-            (int a, int b, int x, int y) coordinatesOfPlayerLastMove = (lastMove.blackMoves.Count == 0) ? lastMove.whiteMoves[0] : lastMove.blackMoves[0];
-            if (coordinatesOfPlayerLastMove.x == x && coordinatesOfPlayerLastMove.y == p.B)
+            MoveCoordinates coordinatesOfPlayerLastMove = (lastMove.blackMove == null) ? lastMove.whiteMove! : lastMove.blackMove;
+            if (coordinatesOfPlayerLastMove.X == x && coordinatesOfPlayerLastMove.Y == p.B)
                 return true;
         }
         return false;

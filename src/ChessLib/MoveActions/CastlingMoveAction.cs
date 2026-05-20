@@ -25,7 +25,7 @@ internal class CastlingMoveAction : MoveAction
         field.Reposition(kingX, bothY, x, y, isReplay);
         field.Reposition(originalRookX, bothY, newRookX, bothY, isReplay);
         if (!isReplay)
-            field.AddMove([(kingX, bothY, x, y), (originalRookX, bothY, newRookX, bothY)], this);
+            field.AddMove(new MoveCoordinates(kingX, bothY, x, y), this);
     }
 
     internal override void UndoMove(bool isReplay = false, params MoveOption[] moveOptions)

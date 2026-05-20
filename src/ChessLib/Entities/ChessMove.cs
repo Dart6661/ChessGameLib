@@ -5,31 +5,31 @@ namespace ChessLib.Entities;
 
 public class ChessMove
 {
-    internal List<(int, int, int, int)> whiteMoves = [];
-    internal List<(int, int, int, int)> blackMoves = [];
+    internal MoveCoordinates? whiteMove;
+    internal MoveCoordinates? blackMove;
     internal MoveAction? whiteMoveAction;
     internal MoveAction? blackMoveAction;
 
-    public Color ColorOfMovingPlayer() => (whiteMoves.Count == 0 || whiteMoves.Count != 0 && blackMoves.Count != 0) ? Color.White : Color.Black;
+    public Color ColorOfMovingPlayer() => (whiteMove == null || whiteMove != null && blackMove != null) ? Color.White : Color.Black;
     
-    public IReadOnlyList<(int, int, int, int)> GetWhiteMoves() => whiteMoves.AsReadOnly();
+    public MoveCoordinates? GetWhiteMove() => whiteMove;
 
-    public IReadOnlyList<(int, int, int, int)> GetBlackMoves() => blackMoves.AsReadOnly();
+    public MoveCoordinates? GetBlackMove() => blackMove;
 
     public MoveOption[] GetWhiteMoveOptions() => whiteMoveAction != null ? whiteMoveAction.GetOptions() : [];
 
     public MoveOption[] GetBlackMoveOptions() => blackMoveAction != null ? blackMoveAction.GetOptions() : [];
 
-    internal void SetMove(List<(int, int, int, int)> moves, MoveAction moveAction, Color color)
+    internal void SetMove(MoveCoordinates move, MoveAction moveAction)
     {
-        if (color == Color.White)
+        if (whiteMove == null)
         {
-            whiteMoves = moves;
+            whiteMove = move;
             whiteMoveAction = moveAction;
         }
         else
         {
-            blackMoves = moves;
+            blackMove = move;
             blackMoveAction = moveAction;
         }
     }

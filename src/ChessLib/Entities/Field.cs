@@ -137,15 +137,15 @@ public class Field
 
     internal void ChangeCell(int x, int y, Figure? f) => field[x, y] = f;
 
-    internal void AddMove(List<(int, int, int, int)> coordinates, MoveAction moveAction)
+    internal void AddMove(MoveCoordinates coordinates, MoveAction moveAction)
     {
         if (moves.Count == 0 || moves[AmountMovesOnField].ColorOfMovingPlayer() == Color.White)
         {
             AmountMovesOnField++;
             moves[AmountMovesOnField] = new ChessMove();
-            moves[AmountMovesOnField].SetMove(coordinates, moveAction, Color.White);
+            moves[AmountMovesOnField].SetMove(coordinates, moveAction);
         }
-        else moves[AmountMovesOnField].SetMove(coordinates, moveAction, Color.Black);
+        else moves[AmountMovesOnField].SetMove(coordinates, moveAction);
     }
 
     private void InitializeFigure(Type figureType, int x, int y, Player player)

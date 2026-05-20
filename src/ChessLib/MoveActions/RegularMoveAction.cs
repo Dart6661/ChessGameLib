@@ -23,7 +23,7 @@ internal class RegularMoveAction : MoveAction
         takenFigure?.RemoveFromPlayer();
         field.Reposition(takerX, takerY, x, y, isReplay);
         if (!isReplay)
-            field.AddMove([(takerX, takerY, x, y)], this);
+            field.AddMove(new MoveCoordinates(takerX, takerY, x, y), this);
     }
 
     internal override void UndoMove(bool isReplay = false, params MoveOption[] moveOptions)

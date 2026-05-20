@@ -52,7 +52,7 @@ internal class ReplacementMoveAction : MoveAction
         field.ChangeCell(pawnX, pawnY, newFigure);
         field.Reposition(pawnX, pawnY, x, y, isReplay);
 
-        if (!isReplay) field.AddMove([(pawnX, pawnY, x, y)], this);
+        if (!isReplay) field.AddMove(new MoveCoordinates(pawnX, pawnY, x, y), this);
     }
 
     internal override void UndoMove(bool isReplay = false, params MoveOption[] moveOptions)

@@ -26,7 +26,7 @@ internal class TakeOnPassageMoveAction : MoveAction
         field.ChangeCell(takenX, bothY, null);
         field.Reposition(takerX, bothY, x, y, isReplay);
         if (!isReplay) 
-            field.AddMove([(takerX, bothY, x, y)], this);
+            field.AddMove(new MoveCoordinates(takerX, bothY, x, y), this);
     }
 
     internal override void UndoMove(bool isReplay = false, params MoveOption[] moveOptions)
